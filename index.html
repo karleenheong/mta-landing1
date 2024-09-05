@@ -6,6 +6,8 @@
     <title>Cozyama - AI-Powered Stays for Digital Nomads</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -21,12 +23,16 @@
                     <ul>
                         <li>Early access to the platform</li>
                         <li>Opportunities to provide feedback and shape our features</li>
-                        <li>Exclusive launch offers and discounts</li>
+                        <li>Exclusive launch offers and deals</li>
                     </ul>
                 </div>
-                <form id="signup-form">
-                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <form id="mc-embedded-subscribe-form" action="https://cozyama.us14.list-manage.com/subscribe/post?u=21608b31b41e198b7e6e8c1cf&amp;id=6a94ccba13&amp;f_id=0041b7e5f0">
+                    <input type="email" id="mce-EMAIL" name="EMAIL" placeholder="Enter your email" required>
                     <button type="submit">Notify Me</button>
+                    <div id="mce-responses" class="clear">
+                        <div class="response" id="mce-error-response" style="display:none"></div>
+                        <div class="response" id="mce-success-response" style="display:none"></div>
+                    </div>
                 </form>
             </div>
         </main>
@@ -34,5 +40,39 @@
             <p>&copy; 2024 Cozyama. All rights reserved.</p>
         </footer>
     </div>
+    <script type="text/javascript">
+        (function($) {
+            window.fnames = new Array();
+            window.ftypes = new Array();
+            fnames[0]='EMAIL';
+            ftypes[0]='email';
+        }(jQuery));
+        var $mcj = jQuery.noConflict(true);
+    
+        $('#mc-embedded-subscribe-form').submit(function(e) {
+            e.preventDefault();
+            
+            var form = $(this);
+            var url = form.attr('action');
+            
+            $.ajax({
+                type: "GET",
+                url: url,
+                data: form.serialize(),
+                dataType: 'jsonp',
+                contentType: "application/json; charset=utf-8",
+                error: function(error){
+                    $('#mce-error-response').html('An error occurred. Please try again.').show();
+                },
+                success: function(data){
+                    if (data.result != "success") {
+                        $('#mce-error-response').html(data.msg).show();
+                    } else {
+                        $('#mce-success-response').html('Thank you for subscribing!').show();
+                    }
+                }
+            });
+        });
+        </script>
 </body>
 </html>
